@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Turnario Ferie Dinamico</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { color: #2c3e50; }
+    form { margin-bottom: 30px; }
+    label { display: block; margin-top: 10px; }
+    input, select, textarea { width: 300px; padding: 5px; }
+    button { margin-top: 15px; padding: 10px 20px; }
+
+    #foglio { margin-top: 10px; padding: 5px; }
+
+    #excelTable table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    #excelTable th, #excelTable td {
+      border: 2px solid #000;
+      padding: 6px;
+      text-align: center;
+      min-width: 40px;
+    }
+    #excelTable tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    #excelTable th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📝 Richiesta Ferie</h2>
+  <form action="richiesta.php" method="POST">
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" required>
+
+    <label for="data_inizio">Data Inizio:</label>
+    <input type="date" name="data_inizio" required>
+
+    <label for="data_fine">Data Fine:</label>
+    <input type="date" name="data_fine" required>
+
+    <label for="motivo">Motivo:</label>
+    <textarea name="motivo" rows="4"></textarea>
+
+    <button type="submit">Invia Richiesta</button>
+  </form>
+
+  <h2>📅 Turnario Attuale</h2>
+  <label for="foglio">Seleziona foglio:</label>
+  <select id="foglio"></select>
+
+  <div id="excelTable">Caricamento turnario...</div>
+
+  <script>
+    fetch("ferie.xlsx")
+      .then(res => res.arrayBuffer())
+      .then(data => {
+        const workbook = XLSX.read(data, { type: "array" });
+        const sheetNames = workbook.SheetNames;
+
+        const select = document.getElementById("foglio");
+        sheetNames.forEach(name => {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          select.appendChild(option);
+        });
+
+        const renderSheet = name => {
+          const sheet = workbook.Sheets[name];
+          const html = XLSX.utils.sheet_to_html(sheet, { editable: false });
+
+          const container = document.getElementById("excelTable");
+          container.innerHTML = html;
+
+          // Evidenzia celle con "sab" o "dom"
+          const cells = container.querySelectorAll("td, th");
+          cells.forEach(cell => {
+            const text = cell.textContent.trim().toLowerCase();
+            if (text === "sab" || text === "dom") {
+              cell.style.backgroundColor = "#ffcccc"; // rosso chiaro
+            }
+          });
+        };
+
+        select.addEventListener("change", e => renderSheet(e.target.value));
+        renderSheet(sheetNames[0]); // mostra il primo foglio all'avvio
+      })
+      .catch(err => {
+        document.getElementById("excelTable").innerHTML = "Errore nel caricamento del file Excel.";
+        console.error(err);
+      });
+  </script>
+
+</body>
+</html>
