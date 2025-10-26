@@ -90,6 +90,8 @@
               cell.style.backgroundColor = "#ffff00"; // giallo 
             } else if (text === "l") {
               cell.style.backgroundColor = "#00ff00"; // verde 
+            } else if (/^d\d+$/i.test(text)) {
+              cell.style.backgroundColor = "#cce5ff"; // azzurro chiaro
             }
           });
         };
@@ -105,5 +107,6 @@
 
 </body>
 </html>
+
 
 
