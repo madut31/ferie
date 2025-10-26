@@ -53,7 +53,7 @@
   </form>
 
   <h2>📅 Turnario Attuale</h2>
-  <label for="foglio">Seleziona foglio:</label>
+  <label for="foglio">Seleziona MESE:</label>
   <select id="foglio"></select>
 
   <div id="excelTable">Caricamento turnario...</div>
@@ -85,7 +85,11 @@
           cells.forEach(cell => {
             const text = cell.textContent.trim().toLowerCase();
             if (text === "sab" || text === "dom") {
-              cell.style.backgroundColor = "#ff0000"; // rosso chiaro
+              cell.style.backgroundColor = "#ff0000"; // rosso
+            }else if (text === "st") {
+              cell.style.backgroundColor = "#ffff00"; // giallo 
+            } else if (text === "l") {
+              cell.style.backgroundColor = "#00ff00"; // verde 
             }
           });
         };
@@ -101,4 +105,5 @@
 
 </body>
 </html>
+
 
