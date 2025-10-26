@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestione Ferie</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { color: #2c3e50; }
+    form { margin-bottom: 30px; }
+    label { display: block; margin-top: 10px; }
+    input, select, textarea { width: 300px; padding: 5px; }
+    button { margin-top: 15px; padding: 10px 20px; }
+    iframe { width: 100%; height: 600px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+  <h2>📝 Richiesta Ferie</h2>
+  <form action="/ferie/richiesta.php" method="POST">
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" required>
+
+    <label for="data_inizio">Data Inizio:</label>
+    <input type="date" name="data_inizio" required>
+
+    <label for="data_fine">Data Fine:</label>
+    <input type="date" name="data_fine" required>
+
+    <label for="motivo">Motivo:</label>
+    <textarea name="motivo" rows="4"></textarea>
+
+    <button type="submit">Invia Richiesta</button>
+  </form>
+
+  <h2>📅 Turnario Attuale</h2>
+  <iframe src="turnario.html"></iframe>
+
+</body>
+</html>
