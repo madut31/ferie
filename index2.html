@@ -95,7 +95,7 @@
             } else if (lower === "l") {
               cell.style.backgroundColor = "#00ff00"; // verde
             } else if (/^d\d+$/i.test(text)) {
-              cell.style.backgroundColor = "#0000ff"; // blu
+              cell.style.backgroundColor = "#079df9"; // blu
             }
           });
         };
@@ -114,8 +114,8 @@
           const cellB = foglioNomi[`B${riga}`];
           const cellC = foglioNomi[`C${riga}`];
 
-          const nome = cellB ? cellB.v.toString().trim() : "";
-          const cognome = cellC ? cellC.v.toString().trim() : "";
+          const cognome = cellB ? cellB.v.toString().trim() : "";
+          const nome = cellC ? cellC.v.toString().trim() : "";
 
           if (!nome && !cognome) {
             vuoteConsecutive++;
