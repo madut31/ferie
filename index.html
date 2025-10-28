@@ -35,7 +35,7 @@
 </head>
 <body>
 
-  <h2>📝 Richiesta Ferie</h2>
+  <h2>📝 Richiesta Ferie</h2> <!-- Form dove inserire i giorni -->
   <form action="richiesta.php" method="POST">
     <label for="nome">Nome:</label>
     <select name="nome" id="nomeSelect" required>
@@ -54,12 +54,19 @@
     <button type="submit">Invia Richiesta</button>
   </form>
 
-  <h2>📅 Turnario Attuale</h2>
+  <!-- tag dove vengono inseriti i RadiButton corrispondenti ai giorni di servizio-->
+  <h2>🎯 Seleziona Turno Programmato</h2>
+  <div id="turniRadio">Caricamento turni...</div>
+
+  
+  <!-- Selezione del mese da visualizzare nella tabella-->
+  <h2>📅 Turnario Attuale</h2> 
   <label for="foglio">Seleziona MESE:</label>
   <select id="foglio"></select>
 
   <div id="excelTable">Caricamento turnario...</div>
-
+  
+<!-- Inizio Codice JS -->
   <script>
     fetch("ferie.xlsx")
       .then(res => res.arrayBuffer())
