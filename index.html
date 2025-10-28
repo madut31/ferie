@@ -92,15 +92,17 @@
 
   
   <!-- Selezione del mese da visualizzare nella tabella-->
-  <h2>📅 Turnario Attuale</h2> 
-  <label for="foglio">Seleziona MESE:</label>
+  <h2>📅 Selezione Mese</h2> 
+  <!--<label for="foglio">Seleziona MESE:</label> -->
   <select id="foglio"></select>
-
+   <!-- tag dove vengono inseriti i RadiButton corrispondenti ai giorni di servizio-->
+    <h2>🎯 Seleziona Turno </h2>
+    <div id="turniRadio">Caricamento turni...</div>
+  
+  <!-- tag dove viene inserita la tabella di Excel-->
   <div id="excelTable">Caricamento turnario...</div>
 
-  <!-- tag dove vengono inseriti i RadiButton corrispondenti ai giorni di servizio-->
-      <h2>🎯 Seleziona Turno </h2>
-      <div id="turniRadio">Caricamento turni...</div>
+ 
   
 <!-- Inizio Codice JS -->
   <script>
