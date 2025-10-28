@@ -54,7 +54,7 @@
         gap: 8px;
         margin-top: 10px;
         overflow-x: auto;
-         max-width: 100%; /* 👈 limita la larghezza */
+        max-width: 100%;
         padding: 5px;
       }
       
@@ -63,14 +63,21 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 60px; /* 👈 larghezza fissa per ogni cella */
+        width: 60px;
         font-size: 12px;
         padding: 4px;
         background-color: #f2f2f2;
         border-radius: 4px;
         white-space: nowrap;
         box-sizing: border-box;
-      }      
+        position: relative; /* 👈 importante per evitare sovrapposizioni */
+      }
+      
+      #turniRadio input[type="checkbox"] {
+        margin-top: 4px;
+        cursor: pointer;
+        z-index: 1; /* 👈 assicura che il click vada sull’input */
+      }
   </style>
 </head>
 <body>
