@@ -31,6 +31,21 @@
     #excelTable th {
       background-color: #f2f2f2;
     }
+    #turniRadio {  /*Stile dei RadiButton*/
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 10px;
+      }
+      #turniRadio label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: #f2f2f2;
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
   </style>
 </head>
 <body>
@@ -41,22 +56,18 @@
     <select name="nome" id="nomeSelect" required>
       <option value="">Caricamento nomi...</option>
     </select>
-
-    <label for="data_inizio">Data Inizio:</label>
-    <input type="date" name="data_inizio" required>
-
-    <label for="data_fine">Data Fine:</label>
-    <input type="date" name="data_fine" required>
-
+   
     <label for="motivo">Motivo:</label>
     <textarea name="motivo" rows="4"></textarea>
-
+    
+    <!-- tag dove vengono inseriti i RadiButton corrispondenti ai giorni di servizio-->
+      <h2>🎯 Seleziona Turno Programmato</h2>
+      <div id="turniRadio">Caricamento turni...</div>
+    
     <button type="submit">Invia Richiesta</button>
   </form>
 
-  <!-- tag dove vengono inseriti i RadiButton corrispondenti ai giorni di servizio-->
-  <h2>🎯 Seleziona Turno Programmato</h2>
-  <div id="turniRadio">Caricamento turni...</div>
+  
 
   
   <!-- Selezione del mese da visualizzare nella tabella-->
