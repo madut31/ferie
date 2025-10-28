@@ -122,7 +122,7 @@
         select.addEventListener("change", e => renderSheet(e.target.value));
         renderSheet(sheetNames[0]); // mostra il primo foglio all'avvio
         
-        // Legge la riga dei turni  e genera radio button*******************************************************
+        // Legge la riga dei turni  e genera le caselle di spunta*******************************************************
           // ✅ Genera i radio button direttamente
           const turniContainer = document.getElementById("turniRadio");
           const foglioTurni = workbook.Sheets[sheetNames[0]];
@@ -143,7 +143,7 @@
             turniContainer.innerHTML = "";
             turni.forEach((turno, i) => {
               const label = document.createElement("label");
-              label.innerHTML = `<input type="radio" name="turno_mese" value="${turno}"> ${turno}`;
+              label.innerHTML = `<input type="checkbox" name="turno_mese[]" value="${turno}"> ${turno}`;
               turniContainer.appendChild(label);
             });
           } else {
