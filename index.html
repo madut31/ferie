@@ -111,31 +111,33 @@
         renderSheet(sheetNames[0]); // mostra il primo foglio all'avvio
         
         // Legge la riga dei turni  e genera radio button*******************************************************
-          const turniContainer = document.getElementById("turniRadio");
-          const foglioTurni = workbook.Sheets[sheetNames[0]];
-          
-          const rigaTurni = 10; // riga da cui leggere i turni
-          const turni = [];
-          
-          for (let col = 2; col <= 32; col++) { // colonne B (2) a AF (32)
-            const cell = foglioTurni[XLSX.utils.encode_cell({ r: rigaTurni - 1, c: col - 1 })];
-            if (cell && cell.v) {
-              turni.push(cell.v.toString().trim());
-            }
-          }
-          
-          if (turni.length > 0) {
-            turniContainer.innerHTML = "";
-            turni.forEach((turno, i) => {
-              const label = document.createElement("label");
-              label.innerHTML = `<input type="radio" name="turno_mese" value="${turno}"> ${turno}`;
-              turniContainer.appendChild(label);
-              turniContainer.appendChild(document.createElement("br"));
-            });
-          } else {
-            turniContainer.innerHTML = "Nessun turno trovato nella riga specificata.";
+        window.onload = function(){
+                  const turniContainer = document.getElementById("turniRadio");
+                  const foglioTurni = workbook.Sheets[sheetNames[0]];
+                  
+                  const rigaTurni = 10; // riga da cui leggere i turni
+                  const turni = [];
+                  
+                  for (let col = 2; col <= 32; col++) { // colonne B (2) a AF (32)
+                    const cell = foglioTurni[XLSX.utils.encode_cell({ r: rigaTurni - 1, c: col - 1 })];
+                    if (cell && cell.v) {
+                      turni.push(cell.v.toString().trim());
+                    }
+                  }
+                  
+                  if (turni.length > 0) {
+                    turniContainer.innerHTML = "";
+                    turni.forEach((turno, i) => {
+                      const label = document.createElement("label");
+                      label.innerHTML = `<input type="radio" name="turno_mese" value="${turno}"> ${turno}`;
+                      turniContainer.appendChild(label);
+                      turniContainer.appendChild(document.createElement("br"));
+                    });
+                  } else {
+                    turniContainer.innerHTML = "Nessun turno trovato nella riga specificata.";
+                }
         }
-
+        
         // Popola il menu dei nomi da colonne B e C a partire da riga 12******************************************
         const nomeSelect = document.getElementById("nomeSelect");
         const foglioNomi = workbook.Sheets[sheetNames[0]]; // usa il primo foglio per i nomi
